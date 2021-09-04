@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "id": "multiversion",
+  "version": "${version}",
+
+  "name": "Multiversion",
+  "description": "A client mod that lets you connect to any server version from Alpha 1.1.2 to Beta 1.7.3.",
+  "authors": [
+    "0n1"
+  ],
+  "contact": {
+    "homepage": "https://glass-launcher.net/",
+    "sources": "https://github.com/calmilamsy/BIN-fabric-example-mod"
+  },
+
+  "license": "GNU GPLv3",
+  "icon": "assets/multiversion/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "stationapi:event_bus": [
+    ],
+    "stationapi:event_bus_client": [
+
+    ]
+  },
+  "mixins": [
+    "multiversion.mixins.json"
+  ],
+
+  "depends": {
+    "minecraft": "1.0.0-beta.7.3"
+  }
+}

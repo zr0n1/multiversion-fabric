@@ -1,0 +1,35 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "zer0n1.multiversion.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+  ],
+  "server": [
+  ],
+  "client": [
+    "AbstractPacketAccessor",
+    "ClientPlayNetworkHandlerAccessor",
+    "CraftingAccessor",
+    "EntityBaseAccessor",
+    "MixinChest",
+    "MixinClientLevel",
+    "MixinClientPlayer",
+    "MixinClientPlayNetworkHandler",
+    "MixinContainerBase",
+    "MixinEgg",
+    "MixinFishingRod",
+    "MixinFurnace",
+    "MixinGrass",
+    "MixinLeaves",
+    "MixinLiving",
+    "MixinMaterialBlock",
+    "MixinMultiPlayerClientInteractionManager",
+    "MixinSapling",
+    "MixinSheep",
+    "MixinWorkbench"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
