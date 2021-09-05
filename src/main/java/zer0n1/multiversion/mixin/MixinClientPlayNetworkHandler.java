@@ -28,6 +28,9 @@ public abstract class MixinClientPlayNetworkHandler extends PacketHandler
     public void injectSendPacket(AbstractPacket packet, CallbackInfo ci) {
         AbstractPacket packet1 = null;
         int version = ProtocolManager.version();
+        System.out.println(packet.toString());
+        System.out.println(packet.getPacketID());
+        System.out.println(version);
 
         if(packet instanceof LoginRequest0x1Packet) {
             LoginRequest0x1Packet login = (LoginRequest0x1Packet)packet;
@@ -57,6 +60,7 @@ public abstract class MixinClientPlayNetworkHandler extends PacketHandler
             PlayerDigging0xEC2SPacket id0xE = (PlayerDigging0xEC2SPacket)packet;
             if(id0xE.status == 2 && !(id0xE.x == 0 && id0xE.y == 0 && id0xE.z == 0 && id0xE.direction == 0)) {
                 ci.cancel();
+                return;
             }
         }
 
@@ -82,6 +86,16 @@ public abstract class MixinClientPlayNetworkHandler extends PacketHandler
         if(packet instanceof SlotClicked0x66C2SPacket && version < 11 && version > 6) {
             SlotClicked0x66C2SPacket id0x66 = (SlotClicked0x66C2SPacket)packet;
             packet1 = new SlotClicked0x66C2SPacket_P7(id0x66.containerId, id0x66.slotIndex, id0x66.rightClick, id0x66.stack, id0x66.actionType);
+        }
+
+        if(packet instanceof CloseContainer0x65C2SPacket && version < 7) {
+            ci.cancel();
+            return;
+        }
+
+        if(packet instanceof Transaction0x6AS2CPacket && version < 7) {
+            ci.cancel();
+            return;
         }
 
         if(packet instanceof UpdateSign0x82C2SPacket && version < 7) {

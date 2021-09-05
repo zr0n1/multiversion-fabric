@@ -24,21 +24,21 @@ public class LoginRequest0x1Packet_P2 extends AbstractPacket
         protocolVersion = i;
     }
 
-    public void read(DataInputStream datainputstream) {
+    public void read(DataInputStream in) {
         try {
-            protocolVersion = datainputstream.readInt();
-            username = datainputstream.readUTF();
-            password = datainputstream.readUTF();
+            protocolVersion = in.readInt();
+            username = in.readUTF();
+            password = in.readUTF();
         } catch(IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void write(DataOutputStream dataoutputstream) {
+    public void write(DataOutputStream out) {
         try {
-            dataoutputstream.writeInt(protocolVersion);
-            dataoutputstream.writeUTF(username);
-            dataoutputstream.writeUTF(password);
+            out.writeInt(protocolVersion);
+            out.writeUTF(username);
+            out.writeUTF(password);
         } catch(IOException e) {
             e.printStackTrace();
         }

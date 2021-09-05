@@ -1,11 +1,11 @@
 buildscript {
 	repositories {
-		mavenCentral()
-		jcenter()
 		maven {
 			name = "Fabric"
 			url = "https://maven.fabricmc.net/"
 		}
+		mavenCentral()
+		jcenter()
 		maven {
 			name = "Jitpack"
 			url 'https://jitpack.io/'
@@ -88,7 +88,7 @@ dependencies {
 
 	modImplementation "com.github.minecraft-cursed-legacy:cursed-fabric-loader:${project.loader_version}"
 
-	modImplementation "net.modificationstation:StationAPI:${project.stapi_version}"
+//	modImplementation "net.modificationstation:StationAPI:${project.stapi_version}"
 
 	implementation "com.github.jhalterman:typetools:87240d6"
 
@@ -137,7 +137,7 @@ publishing {
 
 	publications {
 		mavenJava(MavenPublication) {
-			artifactId project.archives_base_name
+			artifactId archivesBaseName
 			artifact ("${project.buildDir.absolutePath}/libs/${archivesBaseName}-${project.version}.jar") {
 				classifier null
 				builtBy remapJar

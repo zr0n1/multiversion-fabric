@@ -12,6 +12,7 @@
     "ClientPlayNetworkHandlerAccessor",
     "CraftingAccessor",
     "EntityBaseAccessor",
+    "MixinAbstractPacket",
     "MixinChest",
     "MixinClientLevel",
     "MixinClientPlayer",

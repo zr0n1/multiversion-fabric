@@ -21,7 +21,7 @@ public enum Protocol
 	BETA_10(10, "Beta 1.4_01", "/beta"),
 	BETA_9(9, "Beta 1.3_01", "/beta"),
 	BETA_8(8, "Beta 1.2_02", "/beta"),
-	BETA_7(7, "Beta 1.1_02", "/beta"),
+	BETA_7(7, "Beta 1.1_01", "/beta"),
 	ALPHA_6(6, "Alpha v1.2.6", "/alpha6"),
 	ALPHA_5(5, "Alpha v1.2.3_04", "/alpha6"),
 	ALPHA_3(3, "Alpha v1.2.1_01", "/alpha6"),

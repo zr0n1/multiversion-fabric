@@ -9,6 +9,7 @@ public class ProtocolManager
 	public ProtocolManager() {
 		// set to beta 1.7.3 by default
 		protocol = Protocol.BETA_14;
+		setProtocol(Protocol.BETA_7);
 	}
 	
 	public void setProtocol(Protocol p) {

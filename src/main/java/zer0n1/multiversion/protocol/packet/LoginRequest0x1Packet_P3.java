@@ -23,8 +23,8 @@ public class LoginRequest0x1Packet_P3 extends AbstractPacket
     public void read(DataInputStream in) {
         try {
             protocolVersion = in.readInt();
-            username = readString(in, 16);
-            password = readString(in, 32);
+            username = in.readUTF();
+            password = in.readUTF();
             worldSeed = in.readLong();
             dimensionId = in.readByte();
         } catch(IOException e) {
@@ -35,8 +35,8 @@ public class LoginRequest0x1Packet_P3 extends AbstractPacket
     public void write(DataOutputStream out) {
         try {
             out.writeInt(protocolVersion);
-            writeString(this.username, out);
-            writeString(this.password, out);
+            out.writeUTF(this.username);
+            out.writeUTF(this.password);
             out.writeLong(worldSeed);
             out.writeByte(dimensionId);
         } catch(IOException e) {

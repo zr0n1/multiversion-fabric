@@ -1,10 +1,10 @@
 # gradle
 
 .gradle/
-gradle/wrapper
 build/
 out/
 classes/
+releases/
 
 # eclipse
 

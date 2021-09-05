@@ -2,6 +2,9 @@ package zer0n1.multiversion.protocol;
 
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.MultiPlayerClientInteractionManager;
+import net.minecraft.client.gui.screen.DownloadingTerrain;
+import net.minecraft.client.level.ClientLevel;
 import net.minecraft.entity.EntityBase;
 import net.minecraft.entity.Item;
 import net.minecraft.entity.player.AbstractClientPlayer;
@@ -13,6 +16,7 @@ import net.minecraft.network.PacketHandler;
 import net.minecraft.packet.*;
 import net.minecraft.packet.login.LoginRequest0x1Packet;
 import net.minecraft.packet.play.*;
+import net.minecraft.stat.Stats;
 import net.minecraft.tileentity.TileEntityBase;
 import zer0n1.multiversion.mixin.ClientPlayNetworkHandlerAccessor;
 import zer0n1.multiversion.mixin.CraftingAccessor;
@@ -27,7 +31,7 @@ public class PacketHandlerMultiversion
             onLoginRequest_P3((LoginRequest0x1Packet_P3)packet, netHandler);
         }
         if(packet instanceof LoginRequest0x1Packet_P2) {
-            onLoginRequest_P2((LoginRequest0x1Packet_P2)packet, netHandler);
+            onLoginRequest_P2(netHandler);
         }
         if(packet instanceof EntityEquipment0x5S2CPacket_P2) {
             onEntityEquipment_P2((EntityEquipment0x5S2CPacket_P2)packet);
@@ -64,11 +68,16 @@ public class PacketHandlerMultiversion
         }
     }
 
-    public static void onLoginRequest_P2(LoginRequest0x1Packet_P2 packet, PacketHandler handler) {
-        LoginRequest0x1Packet packet1 = new LoginRequest0x1Packet(packet.username, packet.protocolVersion);
-        packet1.worldSeed = 0;
-        packet1.dimensionId = (byte)0;
-        handler.onLoginRequest(packet1);
+    public static void onLoginRequest_P2(ClientPlayNetworkHandler handler) {
+        Minecraft mc = (Minecraft)FabricLoader.getInstance().getGameInstance();
+        mc.interactionManager = new MultiPlayerClientInteractionManager(mc, handler);
+        mc.statFileWriter.incrementStat(Stats.joinMultiplayer, 1);
+        ClientLevel level = new ClientLevel(handler, 0, 0);
+        level.isClient = true;
+        ((ClientPlayNetworkHandlerAccessor)handler).setLevel(level);
+        mc.setLevel(level);
+        mc.player.dimensionId = 0;
+        mc.openScreen(new DownloadingTerrain(handler));
     }
 
     public static void onLoginRequest_P3(LoginRequest0x1Packet_P3 packet, PacketHandler handler) {

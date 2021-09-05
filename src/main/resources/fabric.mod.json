@@ -16,13 +16,9 @@
   "license": "GNU GPLv3",
   "icon": "assets/multiversion/icon.png",
 
-  "environment": "*",
+  "environment": "client",
   "entrypoints": {
-    "stationapi:event_bus": [
-    ],
-    "stationapi:event_bus_client": [
 
-    ]
   },
   "mixins": [
     "multiversion.mixins.json"
